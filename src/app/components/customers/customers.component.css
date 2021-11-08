@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableSpacer {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+}
+
+.demo-table {
+    width: 100%;
+}
+
+.demo-button-container {
+    padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+    margin-left: 8px;
+}

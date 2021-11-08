@@ -1,0 +1,20 @@
+
+<div class="divChart">
+
+    <div class="demo-button-container">
+        <button mat-raised-button (click)="showBar()" class="demo-button" color="primary" #BarButton [disabled]="isBarChart">
+            Bar chart
+        </button>
+        <button mat-raised-button (click)="showCircular()" class="demo-button" color="primary" #CircularButton [disabled]="!isBarChart">
+            Circular chart
+        </button>
+    </div>
+    <br>
+
+    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <canvas id="barChart" [style.display]="(isBarChart) ? 'block' : 'none' "></canvas>
+        <canvas id="doughnutChart" [style.display]="(!isBarChart) ? 'block' : 'none' "></canvas>
+    </div>
+
+    
+</div>

@@ -1,0 +1,36 @@
+<div mat-dialog-content>
+    <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Items</mat-label>
+        <mat-chip-list #chipList aria-label="motherboard selection">
+          <mat-chip
+            *ngFor="let motherboard of motherboards"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(motherboard)">
+            {{motherboard}}
+            <button matChipRemove *ngIf="removable">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="New item"
+            #motherboardInput
+            [formControl]="motherboardsCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let motherboard of filteredMotherboards | async" [value]="motherboard">
+            {{motherboard}}
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="motherboards" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
+

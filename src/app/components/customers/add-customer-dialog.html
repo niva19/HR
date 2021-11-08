@@ -1,0 +1,93 @@
+<div mat-dialog-content>
+  <p> <strong>Customer data</strong> </p>
+  <mat-divider></mat-divider>
+  <br>
+  <form class="example-form" [formGroup]="customerForm">
+    
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Id</mat-label>
+      <input  matInput
+              type="text"
+              (keypress)="keyPressNumbers($event)"
+              maxlength="4"
+              required
+              formControlName = "customerId"
+              [errorStateMatcher]="matcher"
+              placeholder="Ex. 1234"
+              [(ngModel)]="data.id"
+              [readonly]="data.isEditing">
+      <mat-error *ngIf="customerForm.get('customerId')?.hasError('required')">
+        Id is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input  matInput
+              required
+              formControlName="customerName"
+              [errorStateMatcher]="matcher"
+              [(ngModel)]="data.name">
+      <mat-error *ngIf="customerForm.get('customerName')?.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input  matInput
+              required
+              formControlName="customerLastName"
+              [errorStateMatcher]="matcher"
+              [(ngModel)]="data.lastName">
+      <mat-error *ngIf="customerForm.get('customerLastName')?.hasError('required')">
+        Last Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input  type="email"
+              matInput
+              required
+              formControlName="customerEmail"
+              [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com"
+              [(ngModel)]="data.email">
+      <mat-error *ngIf="customerForm.get('customerEmail')?.hasError('email') && !customerForm.get('customerEmail')?.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="customerForm.get('customerEmail')?.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select matNativeControl
+                  required
+                  [(ngModel)]="data.type"
+                  formControlName="customerType"
+                  [errorStateMatcher]="matcher"> 
+        <mat-option *ngFor="let option of options" [value]="option.value">
+          {{option.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="customerForm.get('customerType')?.hasError('required')">
+        Type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-error *ngIf="isInvalidId">
+      Duplicate Id
+    </mat-error>
+
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="validateData()" cdkFocusInitial [disabled]='customerForm.invalid'>Save</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  
+</div>

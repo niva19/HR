@@ -1,0 +1,21 @@
+/* .element-inside-grid {
+    position: absolute;
+    left: 5px;
+}
+
+.tableSpacer {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+} */
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
